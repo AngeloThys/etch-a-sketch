@@ -1,0 +1,18 @@
+html,
+body {
+    margin: 0;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    
+    height: 100vh;
+    width: 100vw;
+}
+
+.grid>div {
+    background-color: cadetblue;
+    height: calc(100vh / 16);
+    width: calc(100vw / 16);
+}
