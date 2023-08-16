@@ -5,13 +5,28 @@ for (let i = 0; i < 256; i++) {
     grid.appendChild(div);
 }
 
+const gridDivList = grid.querySelectorAll("div");
+
+function addClass(elementName, className) {
+    elementName.classList.add(className);
+}
+
+function removeClass(elementName, className) {
+    elementName.classList.remove(className);
+}
+
+gridDivList.forEach(div => {
+    div.addEventListener('mouseenter', addClass.bind(null, div, "black10"));
+    div.addEventListener('mouseout', removeClass.bind(null, div, "black10"));
+});
+
 function resizeDivs(squares) {
     const stylesheet = document.styleSheets[0];
     console.log(stylesheet);
-    const gridDivs = [...stylesheet.cssRules].find(r => r.selectorText === ".grid > div")
+    const stylesheetGridDiv = [...stylesheet.cssRules].find(r => r.selectorText === ".grid > div")
 
-    gridDivs.style.setProperty("height", `${50/squares}vh`);
-    gridDivs.style.setProperty("width", `${50/squares}vw`);
+    stylesheetGridDiv.style.setProperty("height", `${50/squares}vh`);
+    stylesheetGridDiv.style.setProperty("width", `${50/squares}vw`);
 }
 
 function createGrid() {
@@ -29,6 +44,11 @@ function createGrid() {
         const div = document.createElement("div");
         grid.appendChild(div);
     }
+
+    gridDivList.forEach(div => {
+        div.addEventListener('mouseenter', addClass.bind(null, div, "black10"));
+        div.addEventListener('mouseout', removeClass.bind(null, div, "black10"));
+    });
 }
 
 const button = document.querySelector("button");

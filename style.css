@@ -47,6 +47,6 @@ button:active {
     width: calc(50vw / 16);
 }
 
-.grid > div:hover {
-    background-color: black;
+.black10 {
+    background-color: rgba(0, 0, 0, 0.1);
 }
