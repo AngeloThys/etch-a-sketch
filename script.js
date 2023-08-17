@@ -3,9 +3,10 @@ const grid = document.querySelector(".grid");
 for (let i = 0; i < 256; i++) {
     const div = document.createElement("div");
     grid.appendChild(div);
+    addColor(div);
 }
 
-const gridDivList = grid.querySelectorAll("div");
+let gridDivList = grid.querySelectorAll("div");
 
 function createRandomHexColor() {
     const hexadecimalArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
@@ -39,15 +40,19 @@ function createRandomRGBColor() {
 
 function addColor(div) {
     div.style.backgroundColor = createRandomRGBColor();
+    div.style.opacity = 0;
 }
 
 function removeColor(div) {
     div.style.backgroundColor = "";
 }
 
+function increaseAlpha(div) {
+    div.style.opacity = +div.style.opacity + 0.1;
+}
+
 gridDivList.forEach(div => {
-    div.addEventListener('mouseenter', addColor.bind(null, div));
-    div.addEventListener('mouseout', removeColor.bind(null, div));
+    div.addEventListener('mouseenter', increaseAlpha.bind(null, div));
 });
 
 function resizeDivs(squares) {
@@ -73,11 +78,13 @@ function createGrid() {
     for (let i = 0; i < squares**2; i++) {
         const div = document.createElement("div");
         grid.appendChild(div);
+        addColor(div);
     }
 
+    gridDivList = grid.querySelectorAll("div");
+
     gridDivList.forEach(div => {
-        div.addEventListener('mouseenter', addColor.bind(null, div));
-        div.addEventListener('mouseout', removeColor.bind(null, div));
+        div.addEventListener('mouseenter', increaseAlpha.bind(null, div));
     });
 }
 
