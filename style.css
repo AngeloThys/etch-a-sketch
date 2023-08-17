@@ -47,6 +47,6 @@ button:active {
     width: calc(50vw / 16);
 }
 
-.black10 {
+.gridDivBackgroundColor {
     background-color: rgba(0, 0, 0, 0.1);
 }

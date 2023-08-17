@@ -7,17 +7,47 @@ for (let i = 0; i < 256; i++) {
 
 const gridDivList = grid.querySelectorAll("div");
 
-function addClass(elementName, className) {
-    elementName.classList.add(className);
+function createRandomHexColor() {
+    const hexadecimalArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+
+    let randomColorString = '#';
+
+    for (let i = 0; i < 6; i++) {
+        let index = Math.floor(Math.random() * 16);
+        
+        let hexadecimalValue = hexadecimalArray[index];
+
+        randomColorString += hexadecimalValue;
+    }
+
+    return randomColorString;
 }
 
-function removeClass(elementName, className) {
-    elementName.classList.remove(className);
+function createRandomNumber0To255() {
+    return Math.floor(Math.random() * 256);
+}
+
+function createRandomRGBColor() {
+    let red, green, blue;
+
+    red = createRandomNumber0To255();
+    green = createRandomNumber0To255();
+    blue = createRandomNumber0To255();
+
+    return `rgb(${red}, ${green}, ${blue})`;
+}
+
+function addColor(div) {
+    div.style.backgroundColor = createRandomRGBColor();
+}
+
+function removeColor(div) {
+    div.style.backgroundColor = "";
 }
 
 gridDivList.forEach(div => {
-    div.addEventListener('mouseenter', addClass.bind(null, div, "black10"));
-    div.addEventListener('mouseout', removeClass.bind(null, div, "black10"));
+    div.addEventListener('mouseenter', addColor.bind(null, div));
+    div.addEventListener('mouseout', removeColor.bind(null, div));
 });
 
 function resizeDivs(squares) {
@@ -46,8 +76,8 @@ function createGrid() {
     }
 
     gridDivList.forEach(div => {
-        div.addEventListener('mouseenter', addClass.bind(null, div, "black10"));
-        div.addEventListener('mouseout', removeClass.bind(null, div, "black10"));
+        div.addEventListener('mouseenter', addColor.bind(null, div));
+        div.addEventListener('mouseout', removeColor.bind(null, div));
     });
 }
 
